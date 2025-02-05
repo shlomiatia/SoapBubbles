@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctgtavkfab4qo"]
+
+[ext_resource type="Script" path="res://Entities/BigBubble/big_bubble.gd" id="1_yoiv7"]
+[ext_resource type="Texture2D" uid="uid://dasvesma47f3y" path="res://Textures/bubble128.png" id="2_x08ug"]
+
+[sub_resource type="Animation" id="Animation_678ln"]
+resource_name = " Inflate"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [0.01, 64.0]
+}
+
+[sub_resource type="Animation" id="Animation_kve6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dm7u"]
+_data = {
+" Inflate": SubResource("Animation_678ln"),
+"RESET": SubResource("Animation_kve6l")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kymf6"]
+radius = 0.01
+
+[node name="BigBubble" type="CharacterBody2D"]
+script = ExtResource("1_yoiv7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0dm7u")
+}
+autoplay = " Inflate"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_x08ug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kymf6")
+disabled = true
