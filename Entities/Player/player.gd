@@ -3,11 +3,12 @@ class_name Player extends CharacterBody2D
 enum Emission { NONE, LIGHT, HEAVY }
 
 const SPEED = 150.0
-const PARTICLE_EMITTER_DISTANCE = 32
-const MAX_METER: float = 2.0
-const FILL_RATE: float = 2.0
-const EMISSION_RATE: float = 1.0
-const BPS: float = 25.0
+const MAX_METER: float = 1.0
+const FILL_RATE: float = 0.5
+const EMISSION_RATE: float = 0.5
+const BPS: float = 10.0
+
+var TEXTURE_RADIUS
 
 var meter: float = MAX_METER
 var emission: Emission = Emission.NONE
@@ -16,12 +17,15 @@ var big_bubble_scene = load("res://Entities/BigBubble/BigBubble.tscn")
 var small_bubble_scene = load("res://Entities/SmallBubble/SmallBubble.tscn")
 var small_bubble_timer: float = 0.0
 
+func _ready() -> void:
+    TEXTURE_RADIUS = $Sprite2D.texture.get_width() / 2.0
+
 func _process(delta):
     var mouse_direction = (get_global_mouse_position() - global_position).normalized()
-    var bubble_position = global_position + mouse_direction * PARTICLE_EMITTER_DISTANCE
+    var bubble_position = global_position + mouse_direction * TEXTURE_RADIUS
     var bubble_direction = Vector2(mouse_direction.x, mouse_direction.y)
     if big_bubble != null:
-        big_bubble.global_position = global_position + mouse_direction * PARTICLE_EMITTER_DISTANCE
+        big_bubble.global_position = bubble_position
         big_bubble.direction = bubble_direction
     
     if emission == Emission.LIGHT and meter > 0:
@@ -46,16 +50,6 @@ func _process(delta):
             meter += FILL_RATE * delta
         stop()
         
-func deplete_meter(delta: float):
-    meter = max(meter - EMISSION_RATE * delta, 0.0)
-
-func stop():
-    emission = Emission.NONE
-    small_bubble_timer = 0.0
-    if big_bubble != null:
-        big_bubble.stop()
-        big_bubble = null
-        
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT:
@@ -75,3 +69,13 @@ func _physics_process(delta: float) -> void:
     var direction = Vector2(direction_x, direction_y).normalized()
     velocity = direction * SPEED
     move_and_collide(velocity * delta)
+
+func deplete_meter(delta: float):
+    meter = max(meter - EMISSION_RATE * delta, 0.0)
+
+func stop():
+    emission = Emission.NONE
+    small_bubble_timer = 0.0
+    if big_bubble != null:
+        big_bubble.stop()
+        big_bubble = null
