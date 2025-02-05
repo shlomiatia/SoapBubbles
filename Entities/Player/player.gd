@@ -7,27 +7,37 @@ const PARTICLE_EMITTER_DISTANCE = 32
 const MAX_METER: float = 2.0
 const FILL_RATE: float = 2.0
 const EMISSION_RATE: float = 1.0
+const BPS: float = 25.0
 
 var meter: float = MAX_METER
 var emission: Emission = Emission.NONE
 var big_bubble: BigBubble = null
 var big_bubble_scene = load("res://Entities/BigBubble/BigBubble.tscn")
-
-@onready var particle_emitter : GPUParticles2D = $GPUParticles2D
+var small_bubble_scene = load("res://Entities/SmallBubble/SmallBubble.tscn")
+var small_bubble_timer: float = 0.0
 
 func _process(delta):
     var mouse_direction = (get_global_mouse_position() - global_position).normalized()
-    particle_emitter.global_position = global_position + mouse_direction * PARTICLE_EMITTER_DISTANCE
-    particle_emitter.process_material.direction = Vector3(mouse_direction.x, mouse_direction.y, 0)
+    var bubble_position = global_position + mouse_direction * PARTICLE_EMITTER_DISTANCE
+    var bubble_direction = Vector2(mouse_direction.x, mouse_direction.y)
     if big_bubble != null:
         big_bubble.global_position = global_position + mouse_direction * PARTICLE_EMITTER_DISTANCE
-        big_bubble.direction = Vector2(mouse_direction.x, mouse_direction.y)
+        big_bubble.direction = bubble_direction
     
     if emission == Emission.LIGHT and meter > 0:
-        particle_emitter.emitting = true   
-        meter -= EMISSION_RATE * delta
+        deplete_meter(delta)
+        small_bubble_timer += delta
+        var interval = 1.0 / BPS
+        var operations_needed = floor(small_bubble_timer / interval)
+        small_bubble_timer = fmod(small_bubble_timer, interval)
+        while operations_needed > 0:
+            var small_bubble = small_bubble_scene.instantiate()
+            small_bubble.direction = bubble_direction
+            small_bubble.global_position = bubble_position
+            get_parent().add_child(small_bubble)
+            operations_needed -= 1
     elif emission == Emission.HEAVY and meter > 0:
-        meter -= EMISSION_RATE * delta
+        deplete_meter(delta)
         if big_bubble == null:
             big_bubble = big_bubble_scene.instantiate()
             add_child(big_bubble)
@@ -35,10 +45,13 @@ func _process(delta):
         if meter < MAX_METER:
             meter += FILL_RATE * delta
         stop()
+        
+func deplete_meter(delta: float):
+    meter = max(meter - EMISSION_RATE * delta, 0.0)
 
 func stop():
     emission = Emission.NONE
-    particle_emitter.emitting = false
+    small_bubble_timer = 0.0
     if big_bubble != null:
         big_bubble.stop()
         big_bubble = null
