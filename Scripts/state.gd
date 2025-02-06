@@ -1,16 +1,16 @@
 class_name State
 
-func enter(host) -> void:
+func enter(_host) -> void:
     pass
 
-func exit(host) -> void:
+func exit(_host) -> void:
     pass
 
-func _process(host, delta: float) -> void:
+func _process(_host, _delta: float) -> void:
     pass
 
-func _physics_process(host, delta: float) -> void:
+func _physics_process(_host, _delta: float) -> void:
     pass
 
-func _input(host, event: InputEvent) -> void:
+func _input(_host, _event: InputEvent) -> void:
     pass

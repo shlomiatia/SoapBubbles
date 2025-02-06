@@ -2,8 +2,8 @@ class_name StateMachine extends Node
 
 var states: Dictionary = {}
 
-func _init(states: Dictionary) -> void:
-    self.states = states
+func _init(states_dict: Dictionary) -> void:
+    self.states = states_dict
 
 func get_current(host: Node) -> State:
     return states[host.current_state_id]
