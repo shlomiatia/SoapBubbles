@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2lgejw63ktca"
-path="res://.godot/imported/diamonds128.png-461e1d5cee483289e74743da7d50b03a.ctex"
+uid="uid://6ywa6f5emfxw"
+path="res://.godot/imported/water64.png-d5d597539b4e890e90b37494cd624b96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/diamonds128.png"
-dest_files=["res://.godot/imported/diamonds128.png-461e1d5cee483289e74743da7d50b03a.ctex"]
+source_file="res://Textures/water64.png"
+dest_files=["res://.godot/imported/water64.png-d5d597539b4e890e90b37494cd624b96.ctex"]
 
 [params]
 

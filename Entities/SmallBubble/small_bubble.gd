@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
     var collision = move_and_collide(velocity * delta)
     if collision != null:
         die()
-        collision.get_collider().die()
+        collision.get_collider().hit(16.0)
         
 func die():
     queue_free()

@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
         var collision = move_and_collide(velocity * delta)
         if collision != null:
             die()
-            collision.get_collider().die()
+            collision.get_collider().hit(get_size())
 
 func stop() -> void:
     if animation_player.is_playing():
@@ -26,7 +26,7 @@ func stop() -> void:
 
 func move(_anim_name: String) -> void:
     get_parent().stop()
-    if sprite2d.scale.x * 128 < 16:
+    if get_size() < 16:
         die()
         return
     var game = get_parent().get_parent()
@@ -37,3 +37,6 @@ func move(_anim_name: String) -> void:
 
 func die() -> void:
     queue_free()
+
+func get_size() -> float:
+    return sprite2d.scale.x * 128

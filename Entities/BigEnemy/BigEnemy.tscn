@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo0u8n72muh6x"]
+
+[ext_resource type="Script" path="res://Entities/BigEnemy/big_enemy.gd" id="1_sevpj"]
+[ext_resource type="Texture2D" uid="uid://cl3y0lyov4tjx" path="res://Textures/blob128.png" id="2_qx0y2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o6ofw"]
+radius = 43.0
+height = 108.0
+
+[node name="BigEnemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_sevpj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qx0y2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_o6ofw")

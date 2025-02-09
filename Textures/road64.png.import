@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqht81ly6ajrj"
-path="res://.godot/imported/diamonds64.png-70f08c1feaa9dc3d11fcb2504c77550d.ctex"
+uid="uid://bpg51rvclbxfo"
+path="res://.godot/imported/road64.png-daac08f5bbbd54fabc92fbaaeedecd0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/diamonds64.png"
-dest_files=["res://.godot/imported/diamonds64.png-70f08c1feaa9dc3d11fcb2504c77550d.ctex"]
+source_file="res://Textures/road64.png"
+dest_files=["res://.godot/imported/road64.png-daac08f5bbbd54fabc92fbaaeedecd0f.ctex"]
 
 [params]
 
