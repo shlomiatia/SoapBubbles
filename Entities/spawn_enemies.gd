@@ -39,7 +39,7 @@ func spawn_objects_outside_viewport():
         }
     }
 
-    spawn(small_enemy_scene, 16, props["left"], 15, 0.0)
+    spawn(small_enemy_scene, 20, props["left"], 15, 0.0)
     
 func spawn(enemey_scene: PackedScene, size: int, prop: Dictionary, count: int, side_multiplier: float):
     var center: Vector2 = prop["center"]
