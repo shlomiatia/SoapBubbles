@@ -1,6 +1,7 @@
 extends Node2D
 
-var enemy_scene: PackedScene = preload("res://Entities/SmallEnemy/SmallEnemy.tscn")
+var small_enemy_scene: PackedScene = preload("res://Entities/SmallEnemy/SmallEnemy.tscn")
+var big_enemy_scene: PackedScene = preload("res://Entities/BigEnemy/BigEnemy.tscn")
 var camera: Camera2D
 
 func _ready() -> void:
@@ -38,22 +39,23 @@ func spawn_objects_outside_viewport():
         }
     }
 
-    spawn(props["left"], 15, 20.0, 0.0)
+    spawn(small_enemy_scene, 16, props["left"], 15, 0.0)
     
-func spawn(prop: Dictionary, count: int, back_space: float, side_multiplier: float):
+func spawn(enemey_scene: PackedScene, size: int, prop: Dictionary, count: int, side_multiplier: float):
     var center: Vector2 = prop["center"]
     var back: Vector2 = prop["back"]
     var side = back.orthogonal().abs()
     var side_space = side_multiplier * prop["side_size"] / count
     
     for i in count:
-        var instance = enemy_scene.instantiate()
+        var instance = enemey_scene.instantiate()
+        instance.setup(size)
         get_parent().add_child(instance)
         var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
-        var ass = 1
+        var side_sign = 1
         if i % 2 == 0:
-            ass = -1
+            side_sign = -1
         instance.global_position = center + \
-            i * back * back_space + \
-            (i * ass) * side * side_space + \
+            (i + 1) * back * size + \
+            (i * side_sign) * side * side_space + \
             random_direction * 5.0

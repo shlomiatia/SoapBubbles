@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo0u8n72muh6x"]
+[gd_scene load_steps=4 format=3 uid="uid://d3a22tomgkbge"]
 
 [ext_resource type="Script" path="res://Entities/BigEnemy/big_enemy.gd" id="1_sevpj"]
-[ext_resource type="Texture2D" uid="uid://cl3y0lyov4tjx" path="res://Textures/blob128.png" id="2_qx0y2"]
+[ext_resource type="Texture2D" uid="uid://d07vwmxtdpwky" path="res://Textures/blob32.png" id="2_rjf5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_21vcb"]
-radius = 55.0
+radius = 13.0
 
 [node name="BigEnemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_sevpj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qx0y2")
+texture = ExtResource("2_rjf5v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_21vcb")
