@@ -55,7 +55,7 @@ position = Vector2(-3, 3)
 shape = SubResource("CircleShape2D_7iokm")
 
 [node name="Rock262" type="Sprite2D" parent="."]
-position = Vector2(3120, -46)
+position = Vector2(853, 385)
 texture = ExtResource("14_fkob1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Rock262"]
