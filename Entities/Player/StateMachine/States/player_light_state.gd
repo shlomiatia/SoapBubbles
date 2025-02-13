@@ -1,7 +1,5 @@
 class_name PlayerLightState extends State
 
-const BPS: float = 10.0
-
 func _process(host: Player, delta: float):
     if host.meter > 0:
         host.deplete_meter(delta)
@@ -9,7 +7,7 @@ func _process(host: Player, delta: float):
         PlayerStateMachine.change_state(host, PlayerStateMachine.PlayerStateEnum.STAND)
         return
     host.small_bubble_timer += delta
-    var interval = 1.0 / BPS
+    var interval = 1.0 / Constants.small_bubbles_per_second
     var operations_needed = floor(host.small_bubble_timer / interval)
     host.small_bubble_timer = fmod(host.small_bubble_timer, interval)
     var bubble_direction = host.get_bubble_direction()

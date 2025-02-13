@@ -1,8 +1,6 @@
 class_name Player extends CharacterBody2D
 
-const SPEED = 150.0
 const MAX_METER: float = 1.0
-const EMISSION_RATE: float = 0.5
 
 var TEXTURE_RADIUS
 
@@ -23,10 +21,8 @@ func _input(event: InputEvent) -> void:
     PlayerStateMachine.get_current(self)._input(self, event)
 
 func _physics_process(delta: float) -> void:
-    var direction_x := Input.get_axis("ui_left", "ui_right")
-    var direction_y := Input.get_axis("ui_up", "ui_down")
-    var direction = Vector2(direction_x, direction_y).normalized()
-    velocity = direction * SPEED
+    var direction = Input.get_vector("Left", "Right", "Up", "Down").normalized()
+    velocity = direction * Constants.player_speed
     move_and_collide(velocity * delta)
 
 func get_bubble_direction():
@@ -36,7 +32,7 @@ func get_bubble_position():
     return global_position + get_bubble_direction() * TEXTURE_RADIUS
 
 func deplete_meter(delta: float):
-    meter = max(meter - EMISSION_RATE * delta, 0.0)
+    meter = max(meter - Constants.meter_drop_rate * delta, 0.0)
 
 func stop():
     if big_bubble != null:

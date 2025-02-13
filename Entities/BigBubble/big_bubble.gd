@@ -1,9 +1,5 @@
 class_name BigBubble extends CharacterBody2D
 
-const SPEED: float = 150.0
-const DECELERATION: float = 20.0
-const LIFETIME: float = 4.0
-
 var direction: Vector2
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite2d: Sprite2D = $Sprite2D
@@ -13,7 +9,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
     if velocity != Vector2.ZERO:
-        velocity = velocity.move_toward(Vector2.ZERO, DECELERATION * delta)
+        velocity = velocity.move_toward(Vector2.ZERO, Constants.bubble_deceleration * delta)
         var collision = move_and_collide(velocity * delta)
         if collision != null:
             die()
@@ -31,8 +27,8 @@ func move(_anim_name: String) -> void:
         return
     var game = get_parent().get_parent()
     reparent(game, true)
-    velocity = SPEED * direction
-    await get_tree().create_timer(LIFETIME).timeout
+    velocity = Constants.big_bubble_speed * direction
+    await get_tree().create_timer(Constants.bubble_lifetime).timeout
     die()
 
 func die() -> void:

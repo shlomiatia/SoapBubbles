@@ -65,14 +65,13 @@ func spawn_objects_outside_viewport():
 
     spawn(10, enemy_props["small"], size_props["left"], init_props)
 
-    spawn(1, enemy_props["x-large"], size_props["left"], init_props)
+    #spawn(1, enemy_props["large"], size_props["left"], init_props)
     
     
 func spawn(count: int, enemy_prop: Dictionary, size_props: Dictionary, init_props: Dictionary):
     var enemy_scene: PackedScene = enemy_prop["scene"]
     var back_size: float = enemy_prop["size"]
     var center: Vector2 = size_props["center"]
-    prints("center", center)
     var back_vector: Vector2 = size_props["back_vector"]
     var back_space: float = back_size * init_props["back_multiplier"]
     var side_vector: Vector2 = back_vector.orthogonal().abs()

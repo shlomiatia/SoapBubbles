@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dwaydn7kjbowe" path="res://TileSets/tile_set.tres" id="1_cr4c0"]
 [ext_resource type="PackedScene" uid="uid://gbxgd8qq7r07" path="res://Entities/Player/Player.tscn" id="2_7bkva"]
-[ext_resource type="PackedScene" uid="uid://btx41q6uf43d8" path="res://Entities/SpawnEnemies.tscn" id="4_2253b"]
+[ext_resource type="PackedScene" uid="uid://btx41q6uf43d8" path="res://Entities/SpawnEnemies/SpawnEnemies.tscn" id="4_2253b"]
 [ext_resource type="Texture2D" uid="uid://cuddo1kkhatrr" path="res://Textures/rock256.png" id="14_fkob1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iokm"]
