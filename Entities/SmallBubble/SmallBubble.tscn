@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gtmuf"]
 radius = 8.0
 
-[node name="SmallBubble" type="CharacterBody2D"]
+[node name="SmallBubble" type="CharacterBody2D" groups=["moveables"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_krwy5")

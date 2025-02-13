@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://dwaydn7kjbowe"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://dwaydn7kjbowe"]
 
 [ext_resource type="Texture2D" uid="uid://dduntgqupmqxd" path="res://Textures/grass64.1.png" id="2_2kym6"]
 [ext_resource type="Texture2D" uid="uid://dwetq0bxlp6ul" path="res://Textures/grass64.2.png" id="3_sidio"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d1g4cegnefabi" path="res://Textures/grass64.4.png" id="5_8lj3a"]
 [ext_resource type="Texture2D" uid="uid://xbog43pio7j" path="res://Textures/grass64.5.png" id="6_2265g"]
 [ext_resource type="Texture2D" uid="uid://g1n0k8nqatew" path="res://Textures/grass64.png" id="6_bs1s5"]
-[ext_resource type="Texture2D" uid="uid://6ywa6f5emfxw" path="res://Textures/water64.png" id="7_ae0xt"]
 [ext_resource type="Texture2D" uid="uid://bpg51rvclbxfo" path="res://Textures/road64.png" id="8_7d881"]
 [ext_resource type="Texture2D" uid="uid://d3wfnk8oxqoj8" path="res://Textures/turn64.png" id="9_x3j1g"]
 
@@ -40,11 +39,6 @@ texture = ExtResource("6_2265g")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbvyu"]
-texture = ExtResource("7_ae0xt")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yvk2c"]
 texture = ExtResource("8_7d881")
 texture_region_size = Vector2i(64, 64)
@@ -63,6 +57,5 @@ sources/2 = SubResource("TileSetAtlasSource_ghanl")
 sources/3 = SubResource("TileSetAtlasSource_6ufyx")
 sources/4 = SubResource("TileSetAtlasSource_tse6q")
 sources/5 = SubResource("TileSetAtlasSource_8e0sp")
-sources/6 = SubResource("TileSetAtlasSource_hbvyu")
 sources/7 = SubResource("TileSetAtlasSource_yvk2c")
 sources/8 = SubResource("TileSetAtlasSource_3vlt5")

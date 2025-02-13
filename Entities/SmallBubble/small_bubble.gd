@@ -5,7 +5,7 @@ var direction: Vector2
 func _ready() -> void:
     var random_angle = deg_to_rad(randf_range(-Constants.small_bubble_spred, Constants.small_bubble_spred))
     direction = direction.rotated(random_angle)
-    velocity = Constants.small_bubble_speed * direction
+    velocity = Constants.bubble_speed * direction
     await get_tree().create_timer(Constants.bubble_lifetime).timeout
     die()
 

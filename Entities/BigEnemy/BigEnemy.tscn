@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_21vcb"]
 radius = 13.0
 
-[node name="BigEnemy" type="CharacterBody2D"]
+[node name="BigEnemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
 script = ExtResource("1_sevpj")
 

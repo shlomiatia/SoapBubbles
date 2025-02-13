@@ -27,7 +27,7 @@ func move(_anim_name: String) -> void:
         return
     var game = get_parent().get_parent()
     reparent(game, true)
-    velocity = Constants.big_bubble_speed * direction
+    velocity = Constants.bubble_speed * direction
     await get_tree().create_timer(Constants.bubble_lifetime).timeout
     die()
 

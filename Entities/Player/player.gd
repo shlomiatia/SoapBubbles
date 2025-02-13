@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 const MAX_METER: float = 1.0
+const world_width: float = 1920.0 * 3.0
+const world_height: float = 1080.0 * 3.0
 
 var TEXTURE_RADIUS
 
@@ -24,6 +26,7 @@ func _physics_process(delta: float) -> void:
     var direction = Input.get_vector("Left", "Right", "Up", "Down").normalized()
     velocity = direction * Constants.player_speed
     move_and_collide(velocity * delta)
+    wrap_position()
 
 func get_bubble_direction():
     return (get_global_mouse_position() - global_position).normalized()
@@ -38,4 +41,29 @@ func stop():
     if big_bubble != null:
         big_bubble.stop()
         big_bubble = null
-        PlayerStateMachine.change_state(self, PlayerStateMachine.PlayerStateEnum.STAND)   
+        PlayerStateMachine.change_state(self, PlayerStateMachine.PlayerStateEnum.STAND)
+        
+func wrap_position():
+    var pos = position
+    var wrapped = false
+    
+    if pos.x > world_width:
+        pos.x = 0
+        wrapped = true
+    elif pos.x < 0:
+        pos.x = world_width
+        wrapped = true
+    
+    if pos.y > world_height:
+        pos.y = 0
+        wrapped = true
+    elif pos.y < 0:
+        pos.y = world_height
+        wrapped = true
+    
+    if wrapped:
+        var vector = pos - position
+        var moveables = get_tree().get_nodes_in_group("moveables")
+        for moveable in moveables:
+            moveable.position += vector
+        position = pos

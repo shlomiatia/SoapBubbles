@@ -3,12 +3,11 @@ extends Node2D
 
 var bubble_deceleration: float = 20.0
 var bubble_lifetime: float = 4.0
-var big_bubble_speed: float = 200.0
-var small_bubble_speed: float = 200.0
+var bubble_speed: float = 175.0
 var small_bubble_spred: float = 3.0
-var enemy_speed: float = 220.0
+var enemy_speed: float = 250.0
 var small_bubbles_per_second: float = 10
-var player_speed: float = 170.0
+var player_speed: float = 150.0
 var max_meter: float = 1.0
 var meter_drop_rate: float = 0.5
 var meter_fill_rate: float = 0.5
@@ -24,9 +23,7 @@ func _ready():
     properties = [
         "bubble_deceleration",
         "bubble_lifetime",
-        "big_bubble_speed",
-        "small_bubble_speed",
-        "small_bubble_spred",
+        "bubble_speed",
         "enemy_speed",
         "small_bubbles_per_second",
         "player_speed",
