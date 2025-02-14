@@ -39,6 +39,5 @@ func spawn() -> void:
     var configurations = SpawnEnemyWave.generate_spawn_configuration(cost)
     
     for config in configurations:
-        for enemy_group in config.enemies:
-            SpawnEnemiesOnSide.spawn(self, enemy_group.count, enemy_group.size, size_props[config.side], config.formation)
+        SpawnEnemiesOnSide.spawn(self, config.enemies, size_props[config.side], config.formation)
             

@@ -80,10 +80,13 @@ static func generate_enemies_for_side(points: int) -> Array:
         var max_count = remaining_points / cost
         var count = randi() % max_count + 1
         
-        enemies.append({
-            "size": chosen_size,
-            "count": count
-        })
+        if !enemies.is_empty() && enemies[enemies.size() - 1].size == chosen_size:
+            enemies[enemies.size() - 1].count += count
+        else:
+            enemies.append({
+                "size": chosen_size,
+                "count": count
+            })
         
         remaining_points -= count * cost
     return enemies
