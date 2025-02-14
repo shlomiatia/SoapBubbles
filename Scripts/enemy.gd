@@ -1,11 +1,19 @@
-class_name Enemy extends Node
+class_name Enemy extends CharacterBody2D
 
+@onready var player: Player = $/root/Game/Player
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass # Replace with function body.
+    tree_exiting.connect(_on_tree_existing)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
+func _physics_process(delta: float) -> void:
+    var direction = (player.global_position - global_position).normalized()
+    velocity = direction * Constants.enemy_speed
+    var collision = move_and_collide(velocity * delta)
+    if collision:
+        var normal = collision.get_normal()
+        velocity = velocity.slide(normal)
+        move_and_collide(velocity * delta)
+        
+func _on_tree_existing() -> void:
+    if get_tree().get_nodes_in_group("enemies").size() <= 1:
+        $/root/Game/SpawnEnemies.spawn()
