@@ -26,6 +26,9 @@ static var props = {
 @onready var player: Player = $/root/Game/Player
 var size: int = 32
 
+func _ready() -> void:
+    tree_exiting.connect(_on_tree_existing)
+
 func _physics_process(delta: float) -> void:
     var direction = (player.global_position - global_position).normalized()
     velocity = direction * Constants.enemy_speed
@@ -44,4 +47,7 @@ func setup(given_size: int) -> void:
 func hit(bubble_size: float) -> void:
     if bubble_size >= size:
         queue_free()
-    
+        
+func _on_tree_existing() -> void:
+    if get_tree().get_nodes_in_group("enemies").size() <= 1:
+        print("wave ended")

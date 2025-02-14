@@ -62,8 +62,9 @@ func wrap_position():
         wrapped = true
     
     if wrapped:
-        var vector = pos - position
         var moveables = get_tree().get_nodes_in_group("moveables")
         for moveable in moveables:
-            moveable.position += vector
+            var vector = moveable.position - position
+            moveable.position = pos + vector
+            
         position = pos
