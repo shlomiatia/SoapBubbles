@@ -9,4 +9,4 @@ func _input(host: Player, event: InputEvent) -> void:
 
 func _process(host: Player, delta: float):
     if host.meter < host.MAX_METER:
-        host.meter += Constants.meter_fill_rate * delta
+        host.set_meter(host.meter + Constants.meter_fill_rate * delta)

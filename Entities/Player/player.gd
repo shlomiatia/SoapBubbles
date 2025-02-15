@@ -12,6 +12,7 @@ var big_bubble: BigBubble = null
 var big_bubble_scene = load("res://Entities/BigBubble/BigBubble.tscn")
 var small_bubble_scene = load("res://Entities/SmallBubble/SmallBubble.tscn")
 var small_bubble_timer: float = 0.0
+@onready var bottle: Bottle = $/root/Game/CanvasLayer/Bottle
 
 func _ready() -> void:
     TEXTURE_RADIUS = $Sprite2D.texture.get_width() / 2.0
@@ -35,7 +36,11 @@ func get_bubble_position():
     return global_position + get_bubble_direction() * TEXTURE_RADIUS
 
 func deplete_meter(delta: float):
-    meter = max(meter - Constants.meter_drop_rate * delta, 0.0)
+    set_meter(max(meter - Constants.meter_drop_rate * delta, 0.0))
+    
+func set_meter(value) -> void:
+    meter = value
+    bottle.set_water_level(meter)
 
 func stop():
     if big_bubble != null:

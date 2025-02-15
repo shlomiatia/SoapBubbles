@@ -1,15 +1,17 @@
 class_name SpawnEnemies extends Node2D
 
-var camera: Camera2D
+@onready var camera: Camera2D = $/root/Game/Player/Camera2D
+@onready var wave_label: WaveLabel = $/root/Game/CanvasLayer/WaveLabel
 var cost := 0;
 
 func _ready() -> void:
-    camera = $/root/Game/Player/Camera2D
     spawn()
     
 func spawn() -> void:
-    await get_tree().create_timer(5.0).timeout
     cost += 8
+    @warning_ignore("integer_division")
+    wave_label.display_text("Wave %s" % (cost / 8))
+    await get_tree().create_timer(5.0).timeout
     var viewport_size = get_viewport_rect().size
     var camera_pos = camera.global_position
     

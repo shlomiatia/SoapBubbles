@@ -1,110 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjhcsbik6eegs"]
+[gd_scene load_steps=7 format=3 uid="uid://bjhcsbik6eegs"]
 
 [ext_resource type="Texture2D" uid="uid://w6munker7ibm" path="res://Textures/bottle64.png" id="1_852er"]
+[ext_resource type="Script" path="res://Entities/Bottle/bottle.gd" id="1_tqqg6"]
 [ext_resource type="Texture2D" uid="uid://boqy8ik624bdv" path="res://Textures/water64.png" id="2_d1gv6"]
 [ext_resource type="Texture2D" uid="uid://dq3fwvpdp65yn" path="res://Textures/water_bottom.png" id="3_pdicg"]
 [ext_resource type="Texture2D" uid="uid://cbjdg6ob0vr7y" path="res://Textures/water_top64.png" id="4_8x0wo"]
 [ext_resource type="Texture2D" uid="uid://cqnngtjf2httn" path="res://Textures/bottle_specular.png" id="5_057vo"]
 
-[sub_resource type="Animation" id="Animation_vetth"]
-resource_name = "Test"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WaterTop:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 1), Vector2(0, 55)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Water:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(32, 58), Vector2(32, 7)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Water:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 51)]
-}
-
-[sub_resource type="Animation" id="Animation_3exgo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WaterTop:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Water:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(32, 58)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Water:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7nteq"]
-_data = {
-"RESET": SubResource("Animation_3exgo"),
-"Test": SubResource("Animation_vetth")
-}
-
 [node name="Bottle" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_tqqg6")
 
 [node name="Bottle" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 32.0
+offset_right = 24.0
 offset_bottom = 64.0
 texture = ExtResource("1_852er")
 stretch_mode = 2
 
 [node name="Water" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 32.0
+offset_right = 24.0
 offset_bottom = 58.0
 texture = ExtResource("2_d1gv6")
 expand_mode = 1
@@ -114,7 +31,7 @@ stretch_mode = 1
 layout_mode = 0
 offset_left = 1.0
 offset_top = 55.0
-offset_right = 33.0
+offset_right = 23.0
 offset_bottom = 63.0
 texture = ExtResource("3_pdicg")
 stretch_mode = 2
@@ -122,19 +39,14 @@ stretch_mode = 2
 [node name="WaterTop" type="TextureRect" parent="."]
 layout_mode = 0
 offset_top = 1.0
-offset_right = 32.0
+offset_right = 24.0
 offset_bottom = 9.0
 texture = ExtResource("4_8x0wo")
 stretch_mode = 2
 
 [node name="Specular" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 32.0
+offset_right = 24.0
 offset_bottom = 64.0
 texture = ExtResource("5_057vo")
 stretch_mode = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7nteq")
-}
