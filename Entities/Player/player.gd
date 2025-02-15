@@ -13,6 +13,7 @@ var big_bubble_scene = load("res://Entities/BigBubble/BigBubble.tscn")
 var small_bubble_scene = load("res://Entities/SmallBubble/SmallBubble.tscn")
 var small_bubble_timer: float = 0.0
 @onready var bottle: Bottle = $/root/Game/CanvasLayer/Bottle
+@onready var spawn_enemies: SpawnEnemies = $/root/Game/SpawnEnemies
 
 func _ready() -> void:
     TEXTURE_RADIUS = $Sprite2D.texture.get_width() / 2.0
@@ -25,6 +26,8 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
     var direction = Input.get_vector("Left", "Right", "Up", "Down").normalized()
+    if direction != Vector2.ZERO:
+        spawn_enemies.tutorial(0)
     velocity = direction * Constants.player_speed
     move_and_collide(velocity * delta)
     wrap_position()

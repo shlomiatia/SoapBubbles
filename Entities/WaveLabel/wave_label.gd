@@ -9,6 +9,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
     pass
 
-func display_text(text_to_show: String) -> void:
+func display_and_hide(text_to_show: String) -> void:
+    text = text_to_show
+    animation_player.play("ShowAndHide")
+    
+func display(text_to_show: String) -> void:
     text = text_to_show
     animation_player.play("Show")
+    
+func undisplay(text_to_show: String) -> void:
+    text = text_to_show
+    animation_player.play("Hide")

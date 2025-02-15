@@ -3,14 +3,27 @@ class_name SpawnEnemies extends Node2D
 @onready var camera: Camera2D = $/root/Game/Player/Camera2D
 @onready var wave_label: WaveLabel = $/root/Game/CanvasLayer/WaveLabel
 var cost := 0;
+var tutorial_step = 0;
 
 func _ready() -> void:
-    spawn()
+    wave_label.display("WASD to move")
+    
+func tutorial(step: int) -> void:
+    if tutorial_step == 0 && step == 0:
+        wave_label.display("Left mouse button to blow small bubbles")
+        tutorial_step = tutorial_step + 1
+    elif tutorial_step == 1 && step == 1:
+        wave_label.display("Right mouse button to blow a large bubble")
+        tutorial_step = tutorial_step + 1
+    elif tutorial_step == 2 && step == 2:
+        tutorial_step = tutorial_step + 1
+        spawn()
+        
     
 func spawn() -> void:
     cost += 8
     @warning_ignore("integer_division")
-    wave_label.display_text("Wave %s" % (cost / 8))
+    wave_label.display_and_hide("Wave %s" % (cost / 8))
     await get_tree().create_timer(5.0).timeout
     var viewport_size = get_viewport_rect().size
     var camera_pos = camera.global_position
