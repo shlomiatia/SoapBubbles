@@ -10,15 +10,23 @@ func _ready() -> void:
     
 func tutorial(step: int) -> void:
     if tutorial_step == 0 && step == 0:
-        wave_label.display("Left mouse button to blow small bubbles")
-        tutorial_step = tutorial_step + 1
+        tutorial_step = -1
+        wave_label.hide_and_display("Left mouse button to blow small bubbles")
+        await get_tree().create_timer(2.5).timeout
+        tutorial_step = 1
     elif tutorial_step == 1 && step == 1:
-        wave_label.display("Right mouse button to blow a large bubble")
-        tutorial_step = tutorial_step + 1
+        tutorial_step = -1
+        wave_label.hide_and_display("Right mouse button to blow a large bubble")
+        await get_tree().create_timer(2.5).timeout
+        tutorial_step = 2
     elif tutorial_step == 2 && step == 2:
-        tutorial_step = tutorial_step + 1
+        tutorial_step = -1
+        wave_label.undisplay()
+        await get_tree().create_timer(1.5).timeout
         spawn()
         
+func game_over() -> void:
+    pass
     
 func spawn() -> void:
     cost += 8

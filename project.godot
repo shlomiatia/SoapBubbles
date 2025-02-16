@@ -30,6 +30,7 @@ window/stretch/mode="viewport"
 
 moveables=""
 enemies=""
+player=""
 
 [input]
 

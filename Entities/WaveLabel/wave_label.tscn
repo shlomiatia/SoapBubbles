@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://y0b2kqsxiuvm"]
+[gd_scene load_steps=9 format=3 uid="uid://y0b2kqsxiuvm"]
 
 [ext_resource type="FontFile" uid="uid://cth5dmxj253dd" path="res://Fonts/advanced_pixel-7.ttf" id="1_g6ofw"]
 [ext_resource type="Script" path="res://Entities/WaveLabel/wave_label.gd" id="2_cskdf"]
@@ -18,6 +18,22 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_yw2ee"]
+resource_name = "Show"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_rx2ko"]
 resource_name = "Show"
 length = 5.0
@@ -28,14 +44,15 @@ tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 3.5, 4.5, 4.96667),
+"times": PackedFloat32Array(0, 1, 1.5, 3.5, 4, 4.96667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_yw2ee"]
-resource_name = "Show"
+[sub_resource type="Animation" id="Animation_o7tiq"]
+resource_name = "HideAndShow"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,15 +60,29 @@ tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 1.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_next_text"
+}]
 }
 
-[sub_resource type="Animation" id="Animation_bl3mc"]
+[sub_resource type="Animation" id="Animation_06med"]
 resource_name = "Hide"
-length = 5.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,15 +90,16 @@ tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.5, 4.5, 4.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_noyvy"]
 _data = {
-"Hide": SubResource("Animation_bl3mc"),
+"Hide": SubResource("Animation_06med"),
+"HideAndShow": SubResource("Animation_o7tiq"),
 "RESET": SubResource("Animation_cjuwb"),
 "Show": SubResource("Animation_yw2ee"),
 "ShowAndHide": SubResource("Animation_rx2ko")

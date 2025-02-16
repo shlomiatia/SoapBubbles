@@ -32,11 +32,9 @@ func _ready():
         "meter_fill_rate"
     ]
     
-    setup_ui()
-    
-    update_display()
-    
-    print_all_values()
+    #setup_ui()
+    #update_display()
+    #print_all_values()
     
 func setup_ui():
     canvas_layer = CanvasLayer.new()

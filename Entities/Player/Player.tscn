@@ -44,7 +44,7 @@ _data = {
 "RESET": SubResource("Animation_7m4tk")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_4cpn8")
 

@@ -10,9 +10,12 @@ func _physics_process(delta: float) -> void:
     velocity = direction * Constants.enemy_speed
     var collision = move_and_collide(velocity * delta)
     if collision:
-        var normal = collision.get_normal()
-        velocity = velocity.slide(normal)
-        move_and_collide(velocity * delta)
+        if collision.get_collider().is_in_group("player"):
+            print("die")
+        else:
+            var normal = collision.get_normal()
+            velocity = velocity.slide(normal)
+            move_and_collide(velocity * delta)
         
 func _on_tree_existing() -> void:
     if get_tree().get_nodes_in_group("enemies").size() <= 1:
