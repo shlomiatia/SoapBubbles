@@ -42,7 +42,7 @@ func _input(event: InputEvent) -> void:
             if prevent_spawn:
                 prevent_spawn = false
                 tutorial_step = -1
-                wave_label.undisplay()
+                wave_label.animation_player.play("RESET");
                 await get_tree().create_timer(1.5).timeout
                 player.live()
                 spawn()

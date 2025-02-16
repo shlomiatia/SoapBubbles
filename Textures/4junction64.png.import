@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://birx6o52qoaod"
-path="res://.godot/imported/rock64.2.png-0f2ef7d7397a78d7226027bee765426b.ctex"
+uid="uid://dmse4ws5s1xc2"
+path="res://.godot/imported/4junction64.png-3168d7b67323886d92bb370b1f1bc1c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/rock64.2.png"
-dest_files=["res://.godot/imported/rock64.2.png-0f2ef7d7397a78d7226027bee765426b.ctex"]
+source_file="res://Textures/4junction64.png"
+dest_files=["res://.godot/imported/4junction64.png-3168d7b67323886d92bb370b1f1bc1c3.ctex"]
 
 [params]
 

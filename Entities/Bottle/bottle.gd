@@ -12,5 +12,5 @@ func _process(_delta: float) -> void:
 
 func set_water_level(level: float) -> void:
     water_top.position.y = 1 + 54 - 54 * level
-    water.position.y = 51 - 51 * level
-    water.size.y = 7 + 51 * level
+    water.position.y = 54 - 54 * level
+    water.size.y = 7 + 54 * level

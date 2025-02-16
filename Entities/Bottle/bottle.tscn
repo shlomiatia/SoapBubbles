@@ -22,7 +22,7 @@ stretch_mode = 2
 [node name="Water" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 24.0
-offset_bottom = 58.0
+offset_bottom = 61.0
 texture = ExtResource("2_d1gv6")
 expand_mode = 1
 stretch_mode = 1
