@@ -7,7 +7,8 @@ func enter(host: Player):
 func exit(host: Player):
     host.stop()
     
-func _process(host: Player, delta: float):        
+func _process(host: Player, delta: float):
+    host.spawn_enemies.tutorial(2)
     host.big_bubble.global_position = host.get_bubble_position()
     host.big_bubble.direction = host.get_bubble_direction()
     

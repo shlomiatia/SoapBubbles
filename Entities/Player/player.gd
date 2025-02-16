@@ -12,6 +12,7 @@ var big_bubble: BigBubble = null
 var big_bubble_scene = load("res://Entities/BigBubble/BigBubble.tscn")
 var small_bubble_scene = load("res://Entities/SmallBubble/SmallBubble.tscn")
 var small_bubble_timer: float = 0.0
+var is_dead = false
 @onready var bottle: Bottle = $/root/Game/CanvasLayer/Bottle
 @onready var spawn_enemies: SpawnEnemies = $/root/Game/SpawnEnemies
 
@@ -22,9 +23,13 @@ func _process(delta):
     PlayerStateMachine.get_current(self)._process(self, delta)
         
 func _input(event: InputEvent) -> void:
+    if is_dead:
+        return
     PlayerStateMachine.get_current(self)._input(self, event)
 
 func _physics_process(delta: float) -> void:
+    if is_dead:
+        return
     var direction = Input.get_vector("Left", "Right", "Up", "Down").normalized()
     if direction != Vector2.ZERO:
         spawn_enemies.tutorial(0)
@@ -76,3 +81,16 @@ func wrap_position():
             moveable.position = pos + vector
             
         position = pos
+
+func die() -> void:
+    if big_bubble != null:
+        big_bubble.queue_free()
+        big_bubble = null
+    PlayerStateMachine.change_state(self, PlayerStateMachine.PlayerStateEnum.STAND)
+    is_dead = true
+    hide()
+    spawn_enemies.game_over()
+    
+func live() -> void:
+    is_dead = false
+    show()

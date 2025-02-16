@@ -23,13 +23,16 @@ static var enemy_props: Dictionary = {
 }
     
 static func spawn(node: Node, enemies: Array, size_props: Dictionary, formation: SpawnEnemyWave.Formation):
-    var center: Vector2 = size_props["center"]
     var back_vector: Vector2 = size_props["back_vector"]
     var side_vector: Vector2 = back_vector.orthogonal().abs()
     var total_enemies = 0
     for enemy_group in enemies:
         total_enemies += enemy_group.count
-    var side_space: float = size_props["side_size"] / total_enemies
+    var side_size = size_props["side_size"]
+    var side_space: float = side_size  / total_enemies
+    var center: Vector2 = size_props["center"]
+    if formation == SpawnEnemyWave.Formation.COLUMN:
+        center = center + side_vector * (randf() * side_size - side_size / 2.0)
     var i = 0
     var previous_back_space = 0.0
     var total_back_space = 0.0
@@ -50,7 +53,7 @@ static func spawn(node: Node, enemies: Array, size_props: Dictionary, formation:
                 if i % 2 == 0:
                     side_sign = -1
                 @warning_ignore("integer_division")
-                instance.global_position = center + (i / 2) * side_sign * side_vector * side_space
+                instance.global_position = center + ((i + 1) / 2) * side_sign * side_vector * side_space
             var random_direction = Vector2.RIGHT.rotated(randf() * TAU)	
             instance.global_position += random_direction * 5.0
             i = i + 1

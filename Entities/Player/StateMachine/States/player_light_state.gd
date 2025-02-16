@@ -1,6 +1,7 @@
 class_name PlayerLightState extends State
 
 func _process(host: Player, delta: float):
+    host.spawn_enemies.tutorial(1)
     if host.meter > 0:
         host.deplete_meter(delta)
     else:

@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
     var collision = move_and_collide(velocity * delta)
     if collision:
         if collision.get_collider().is_in_group("player"):
-            print("die")
+            collision.get_collider().die()
         else:
             var normal = collision.get_normal()
             velocity = velocity.slide(normal)

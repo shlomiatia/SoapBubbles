@@ -2,8 +2,10 @@ class_name SpawnEnemies extends Node2D
 
 @onready var camera: Camera2D = $/root/Game/Player/Camera2D
 @onready var wave_label: WaveLabel = $/root/Game/CanvasLayer/WaveLabel
+@onready var player: Player = $/root/Game/Player
 var cost := 0;
 var tutorial_step = 0;
+var prevent_spawn = false
 
 func _ready() -> void:
     wave_label.display("WASD to move")
@@ -12,12 +14,12 @@ func tutorial(step: int) -> void:
     if tutorial_step == 0 && step == 0:
         tutorial_step = -1
         wave_label.hide_and_display("Left mouse button to blow small bubbles")
-        await get_tree().create_timer(2.5).timeout
+        await get_tree().create_timer(3).timeout
         tutorial_step = 1
     elif tutorial_step == 1 && step == 1:
         tutorial_step = -1
         wave_label.hide_and_display("Right mouse button to blow a large bubble")
-        await get_tree().create_timer(2.5).timeout
+        await get_tree().create_timer(3).timeout
         tutorial_step = 2
     elif tutorial_step == 2 && step == 2:
         tutorial_step = -1
@@ -26,9 +28,28 @@ func tutorial(step: int) -> void:
         spawn()
         
 func game_over() -> void:
-    pass
+    @warning_ignore("integer_division")
+    wave_label.display("You survived %s waves.\nClick to restart" % (cost / 8))
+    cost = 0
+    prevent_spawn = true
+    for enemy in get_tree().get_nodes_in_group("enemies"):
+        enemy.queue_free()
     
+    
+func _input(event: InputEvent) -> void:
+    if event is InputEventMouseButton && event.pressed: 
+        if event.button_index == MOUSE_BUTTON_LEFT:
+            if prevent_spawn:
+                prevent_spawn = false
+                tutorial_step = -1
+                wave_label.undisplay()
+                await get_tree().create_timer(1.5).timeout
+                player.live()
+                spawn()
+            
 func spawn() -> void:
+    if prevent_spawn:
+        return
     cost += 8
     @warning_ignore("integer_division")
     wave_label.display_and_hide("Wave %s" % (cost / 8))
