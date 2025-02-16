@@ -92,7 +92,6 @@ texture = ExtResource("9_cxnjh")
 [node name="Mushroom65" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(1330, 859)
 rotation = -3.14159
-scale = Vector2(1, -1)
 texture = ExtResource("10_oobt3")
 
 [node name="Mushroom42" type="Sprite2D" parent="EyeCandies"]
@@ -101,20 +100,17 @@ texture = ExtResource("9_cxnjh")
 
 [node name="Mushroom43" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(3973, 1047)
-rotation = -0.112492
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("9_cxnjh")
 
 [node name="Mushroom44" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(3995, 1050)
-rotation = -3.14159
-scale = Vector2(0.8, -0.8)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_cxnjh")
 
 [node name="Mushroom45" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(3254, 1371)
-rotation = -3.14159
-scale = Vector2(0.7, -0.7)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("9_cxnjh")
 
 [node name="Wood64" type="Sprite2D" parent="EyeCandies"]
@@ -123,13 +119,11 @@ texture = ExtResource("14_d283f")
 
 [node name="Wood65" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(1469, 1800)
-rotation = 2.15107
-scale = Vector2(1, -1)
+scale = Vector2(-1, 1)
 texture = ExtResource("14_d283f")
 
 [node name="Wood66" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(4299, 1868)
-rotation = 0.598648
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("14_d283f")
 
@@ -168,19 +162,12 @@ texture = ExtResource("14_fkob1")
 polygon = PackedVector2Array(-132, 72, -14, 132, 137, 75, -12, 34)
 
 [node name="Gems64" type="Sprite2D" parent="."]
-position = Vector2(1986, 2031)
-rotation = 0.595926
+position = Vector2(1970, 2091)
 texture = ExtResource("6_utxcg")
 
 [node name="Gems128" type="Sprite2D" parent="."]
-position = Vector2(1851, 2069)
-rotation = -0.98925
+position = Vector2(1874, 2073)
 texture = ExtResource("7_mx24y")
-
-[node name="Gems32" type="Sprite2D" parent="."]
-position = Vector2(1981, 2106)
-rotation = 1.10472
-texture = ExtResource("5_67i25")
 
 [node name="Rock128" type="Sprite2D" parent="."]
 position = Vector2(4725, 715)
@@ -193,7 +180,6 @@ polygon = PackedVector2Array(-65, 48, 6, 67, 67, 38, 4, 24)
 
 [node name="Rock129" type="Sprite2D" parent="."]
 position = Vector2(3177, 806)
-rotation = -0.120428
 scale = Vector2(-0.9, 0.9)
 texture = ExtResource("13_y8fqx")
 
@@ -204,7 +190,6 @@ polygon = PackedVector2Array(-65, 48, 6, 67, 67, 38, 4, 24)
 
 [node name="Gems33" type="Sprite2D" parent="."]
 position = Vector2(3128, 785)
-rotation = -0.440433
 texture = ExtResource("5_67i25")
 
 [node name="Gems34" type="Sprite2D" parent="."]
@@ -213,13 +198,13 @@ scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_67i25")
 
 [node name="Gems35" type="Sprite2D" parent="."]
-position = Vector2(3220, 782)
-rotation = 0.0537655
+position = Vector2(3222, 793)
 scale = Vector2(-0.9, 0.9)
 texture = ExtResource("5_67i25")
 
 [node name="Rock64" type="Sprite2D" parent="."]
 position = Vector2(1265, 1413)
+scale = Vector2(-1, 1)
 texture = ExtResource("12_gb4ve")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Rock64"]

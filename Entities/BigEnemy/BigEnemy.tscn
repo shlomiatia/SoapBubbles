@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3a22tomgkbge"]
+[gd_scene load_steps=7 format=3 uid="uid://d3a22tomgkbge"]
 
 [ext_resource type="Script" path="res://Entities/BigEnemy/big_enemy.gd" id="1_sevpj"]
 [ext_resource type="Texture2D" uid="uid://d07vwmxtdpwky" path="res://Textures/blob32.png" id="2_rjf5v"]
@@ -6,12 +6,58 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_21vcb"]
 radius = 13.0
 
+[sub_resource type="Animation" id="Animation_763fw"]
+resource_name = "Moving"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1), Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="Animation" id="Animation_qfwwk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qj8sj"]
+_data = {
+"Moving": SubResource("Animation_763fw"),
+"RESET": SubResource("Animation_qfwwk")
+}
+
 [node name="BigEnemy" type="CharacterBody2D" groups=["enemies", "moveables"]]
 collision_layer = 2
 script = ExtResource("1_sevpj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
 texture = ExtResource("2_rjf5v")
+offset = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_21vcb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qj8sj")
+}
+autoplay = "Moving"

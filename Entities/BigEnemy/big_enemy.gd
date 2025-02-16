@@ -28,7 +28,10 @@ var size: int
 func setup(given_size: int) -> void:
     size = given_size
     var prop = props[size]
-    $Sprite2D.texture = prop.texture
+    var sprite2d: Sprite2D = $Sprite2D
+    sprite2d.texture = prop.texture
+    sprite2d.position = Vector2(0.0, given_size / 2)
+    sprite2d.offset = Vector2(0, -given_size / 2)
     $CollisionShape2D.shape.radius = prop.radius
 
 func hit(bubble_size: float) -> void:
