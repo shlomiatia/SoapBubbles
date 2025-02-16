@@ -15,6 +15,7 @@ var small_bubble_timer: float = 0.0
 var is_dead = false
 @onready var bottle: Bottle = $/root/Game/CanvasLayer/Bottle
 @onready var spawn_enemies: SpawnEnemies = $/root/Game/SpawnEnemies
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
     TEXTURE_RADIUS = $Sprite2D.texture.get_width() / 2.0
@@ -31,7 +32,12 @@ func _physics_process(delta: float) -> void:
     if is_dead:
         return
     var direction = Input.get_vector("Left", "Right", "Up", "Down").normalized()
-    if direction != Vector2.ZERO:
+    if direction == Vector2.ZERO:
+        if animation_player.current_animation == "Moving":
+            animation_player.play("Idle")
+    else:
+        if animation_player.current_animation == "Idle":
+            animation_player.play("Moving")
         spawn_enemies.tutorial(0)
     velocity = direction * Constants.player_speed
     move_and_collide(velocity * delta)
@@ -88,9 +94,13 @@ func die() -> void:
         big_bubble = null
     PlayerStateMachine.change_state(self, PlayerStateMachine.PlayerStateEnum.STAND)
     is_dead = true
-    hide()
     spawn_enemies.game_over()
+    animation_player.play("Dead")
+    
     
 func live() -> void:
+    animation_player.play("Live")
+    await get_tree().create_timer(1).timeout
+    animation_player.play("Idle")
     is_dead = false
-    show()
+    

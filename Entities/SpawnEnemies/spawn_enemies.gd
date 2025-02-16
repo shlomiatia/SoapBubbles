@@ -6,6 +6,7 @@ class_name SpawnEnemies extends Node2D
 var cost := 0;
 var tutorial_step = 0;
 var prevent_spawn = false
+var can_restart = false
 
 func _ready() -> void:
     wave_label.display("WASD to move")
@@ -29,22 +30,27 @@ func tutorial(step: int) -> void:
         
 func game_over() -> void:
     @warning_ignore("integer_division")
-    wave_label.display("You survived %s waves.\nClick to restart" % (cost / 8))
-    cost = 0
+    wave_label.display("You survived %s waves.\n " % (cost / 8))
     prevent_spawn = true
     for enemy in get_tree().get_nodes_in_group("enemies"):
         enemy.queue_free()
+    await get_tree().create_timer(2.5).timeout
+    can_restart = true
+    @warning_ignore("integer_division")
+    wave_label.text = "You survived %s waves.\nClick to restart" % (cost / 8)
+    cost = 0
     
     
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseButton && event.pressed: 
         if event.button_index == MOUSE_BUTTON_LEFT:
-            if prevent_spawn:
+            if can_restart:
+                can_restart = false
                 prevent_spawn = false
                 tutorial_step = -1
                 wave_label.animation_player.play("RESET");
-                await get_tree().create_timer(1.5).timeout
                 player.live()
+                await get_tree().create_timer(1.5).timeout
                 spawn()
             
 func spawn() -> void:

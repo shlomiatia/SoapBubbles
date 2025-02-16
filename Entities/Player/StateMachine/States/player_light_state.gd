@@ -1,5 +1,8 @@
 class_name PlayerLightState extends State
 
+func enter(host) -> void:
+    host.animation_player.play("Small")
+
 func _process(host: Player, delta: float):
     host.spawn_enemies.tutorial(1)
     if host.meter > 0:

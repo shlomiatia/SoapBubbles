@@ -1,5 +1,8 @@
 class_name PlayerStandState extends State
 
+func enter(host) -> void:
+    host.animation_player.play("Idle")
+
 func _input(host: Player, event: InputEvent) -> void:
     if event is InputEventMouseButton && event.pressed: 
         if event.button_index == MOUSE_BUTTON_LEFT:

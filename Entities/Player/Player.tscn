@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://gbxgd8qq7r07"]
+[gd_scene load_steps=13 format=3 uid="uid://gbxgd8qq7r07"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_4cpn8"]
 [ext_resource type="Texture2D" uid="uid://ceatowguh0grk" path="res://Textures/player64.png" id="1_psplf"]
+[ext_resource type="Texture2D" uid="uid://cdxt56bp84xur" path="res://Textures/player-dead.png" id="3_4qbgg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eknxg"]
 radius = 22.0
@@ -37,11 +38,136 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_psplf")]
+}
+
+[sub_resource type="Animation" id="Animation_ajs6r"]
+resource_name = "Moving"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1), Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="Animation" id="Animation_ooxvl"]
+resource_name = "Big"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1), Vector2(0.9, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i2vb3"]
+resource_name = "Small"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sect6"]
+resource_name = "Dead"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_4qbgg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ld1vc"]
+resource_name = "Live"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_psplf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13hrx"]
 _data = {
+"Big": SubResource("Animation_ooxvl"),
+"Dead": SubResource("Animation_sect6"),
 "Idle": SubResource("Animation_dcn5n"),
-"RESET": SubResource("Animation_7m4tk")
+"Live": SubResource("Animation_ld1vc"),
+"Moving": SubResource("Animation_ajs6r"),
+"RESET": SubResource("Animation_7m4tk"),
+"Small": SubResource("Animation_i2vb3")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]

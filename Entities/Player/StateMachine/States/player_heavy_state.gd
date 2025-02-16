@@ -3,6 +3,7 @@ class_name PlayerHeavyState extends State
 func enter(host: Player):
     host.big_bubble = host.big_bubble_scene.instantiate()
     host.add_child(host.big_bubble)
+    host.animation_player.play("Big")
 
 func exit(host: Player):
     host.stop()
