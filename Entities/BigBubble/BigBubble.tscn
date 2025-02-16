@@ -1,7 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctgtavkfab4qo"]
+[gd_scene load_steps=14 format=3 uid="uid://ctgtavkfab4qo"]
 
 [ext_resource type="Script" path="res://Entities/BigBubble/big_bubble.gd" id="1_yoiv7"]
 [ext_resource type="Texture2D" uid="uid://dasvesma47f3y" path="res://Textures/bubble128.png" id="2_x08ug"]
+[ext_resource type="Texture2D" uid="uid://bda2vgniah4dk" path="res://Textures/bubble128.pop1.png" id="3_xh3s7"]
+[ext_resource type="Texture2D" uid="uid://dn8aefqo342e4" path="res://Textures/bubble128.pop2.png" id="4_078yv"]
+[ext_resource type="Texture2D" uid="uid://diexk1n1y1iwo" path="res://Textures/bubble128.pop3.png" id="5_r3eok"]
+[ext_resource type="Texture2D" uid="uid://dqvepmylvdj2m" path="res://Textures/bubble128.pop4.png" id="6_0hoj7"]
+[ext_resource type="Texture2D" uid="uid://02nftnd4napm" path="res://Textures/bubble128.pop5.png" id="7_jpmsh"]
+[ext_resource type="Texture2D" uid="uid://bu46byjxja3od" path="res://Textures/bubble128.pop6.png" id="8_nleoa"]
 
 [sub_resource type="Animation" id="Animation_678ln"]
 resource_name = " Inflate"
@@ -64,6 +70,40 @@ _data = {
 "RESET": SubResource("Animation_kve6l")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1xed"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x08ug")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_078yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xh3s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r3eok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0hoj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jpmsh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nleoa")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 24.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_kymf6"]
 radius = 0.01
 
@@ -78,9 +118,13 @@ libraries = {
 }
 autoplay = " Inflate"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("2_x08ug")
+sprite_frames = SubResource("SpriteFrames_a1xed")
+animation = &"pop"
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kymf6")

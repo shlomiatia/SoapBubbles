@@ -33,7 +33,7 @@ func game_over() -> void:
     wave_label.display("You survived %s waves.\n " % (cost / 8))
     prevent_spawn = true
     for enemy in get_tree().get_nodes_in_group("enemies"):
-        enemy.queue_free()
+        enemy.die()
     await get_tree().create_timer(2.5).timeout
     can_restart = true
     @warning_ignore("integer_division")

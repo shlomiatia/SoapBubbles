@@ -8,6 +8,8 @@ static var radius32 = 13
 static var radius64 = 29
 static var radius128 = 55
 
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
 static var props = {
     32: {
         "texture": texture32,
@@ -30,11 +32,19 @@ func setup(given_size: int) -> void:
     var prop = props[size]
     var sprite2d: Sprite2D = $Sprite2D
     sprite2d.texture = prop.texture
+    @warning_ignore("integer_division")
     sprite2d.position = Vector2(0.0, given_size / 2)
+    @warning_ignore("integer_division")
     sprite2d.offset = Vector2(0, -given_size / 2)
     $CollisionShape2D.shape.radius = prop.radius
 
 func hit(bubble_size: float) -> void:
     if bubble_size >= size:
-        queue_free()
+        die()
+        
+func die():
+    var animation_player: AnimationPlayer = $AnimationPlayer
+    collision_shape.disabled = true
+    animation_player.play("Dead")
+    animation_player.animation_finished.connect(func (_anim): queue_free())
         

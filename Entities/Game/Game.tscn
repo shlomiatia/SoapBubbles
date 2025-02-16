@@ -91,7 +91,6 @@ texture = ExtResource("9_cxnjh")
 
 [node name="Mushroom65" type="Sprite2D" parent="EyeCandies"]
 position = Vector2(1330, 859)
-rotation = -3.14159
 texture = ExtResource("10_oobt3")
 
 [node name="Mushroom42" type="Sprite2D" parent="EyeCandies"]

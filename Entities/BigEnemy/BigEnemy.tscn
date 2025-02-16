@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3a22tomgkbge"]
+[gd_scene load_steps=8 format=3 uid="uid://d3a22tomgkbge"]
 
 [ext_resource type="Script" path="res://Entities/BigEnemy/big_enemy.gd" id="1_sevpj"]
 [ext_resource type="Texture2D" uid="uid://d07vwmxtdpwky" path="res://Textures/blob32.png" id="2_rjf5v"]
@@ -37,9 +37,38 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ql2j"]
+resource_name = "Dead"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qj8sj"]
 _data = {
+"Dead": SubResource("Animation_4ql2j"),
 "Moving": SubResource("Animation_763fw"),
 "RESET": SubResource("Animation_qfwwk")
 }

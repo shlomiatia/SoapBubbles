@@ -5,3 +5,6 @@ func setup(_size: int):
 
 func hit(_bubble_size: float) -> void:
     queue_free()
+    
+func die() -> void:
+    queue_free()

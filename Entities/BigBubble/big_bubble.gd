@@ -2,10 +2,11 @@ class_name BigBubble extends CharacterBody2D
 
 var direction: Vector2
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite2d: Sprite2D = $Sprite2D
+@onready var sprite2d: AnimatedSprite2D = $Sprite2D
 
 func _ready() -> void:
-    animation_player.connect("animation_finished", move)
+    animation_player.animation_finished.connect(move)
+    
 
 func _physics_process(delta: float) -> void:
     if velocity != Vector2.ZERO:
@@ -32,7 +33,9 @@ func move(_anim_name: String) -> void:
     die()
 
 func die() -> void:
-    queue_free()
+    $CollisionShape2D.disabled = true
+    sprite2d.play("pop")
+    sprite2d.animation_finished.connect(func (): queue_free())
 
 func get_size() -> float:
     return sprite2d.scale.x * 128
