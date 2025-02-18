@@ -3,6 +3,7 @@ class_name SpawnEnemies extends Node2D
 @onready var camera: Camera2D = $/root/Game/Player/Camera2D
 @onready var wave_label: WaveLabel = $/root/Game/CanvasLayer/WaveLabel
 @onready var player: Player = $/root/Game/Player
+@onready var enemies: Node2D = $/root/Game/Enemies
 var cost := 0;
 var tutorial_step = 0;
 var prevent_spawn = false
@@ -89,5 +90,5 @@ func spawn() -> void:
     var configurations = SpawnEnemyWave.generate_spawn_configuration(cost)
     
     for config in configurations:
-        SpawnEnemiesOnSide.spawn(self, config.enemies, size_props[config.side], config.formation)
+        SpawnEnemiesOnSide.spawn(enemies, config.enemies, size_props[config.side], config.formation)
             

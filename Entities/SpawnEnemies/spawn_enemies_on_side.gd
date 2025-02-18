@@ -45,7 +45,7 @@ static func spawn(node: Node, enemies: Array, size_props: Dictionary, formation:
             previous_back_space = back_size
             var instance = enemy_scene.instantiate()
             instance.setup(back_size)
-            node.get_parent().add_child(instance)
+            node.add_child(instance)
             if formation == SpawnEnemyWave.Formation.COLUMN:
                 instance.global_position = center + back_vector * total_back_space
             else:
