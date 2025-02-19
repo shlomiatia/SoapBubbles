@@ -4,12 +4,17 @@ class_name SpawnEnemies extends Node2D
 @onready var wave_label: WaveLabel = $/root/Game/CanvasLayer/WaveLabel
 @onready var player: Player = $/root/Game/Player
 @onready var enemies: Node2D = $/root/Game/Enemies
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+var intro_music = preload("res://Audio/relaxing-guitar-loop-v5-245859.mp3")
+var game_music = preload("res://Audio/free-synthwave-track-back-to-space-250929.mp3")
+var game_over_music = preload("res://Audio/hope-cinematic-loop-273335.mp3")
 var cost := 0;
 var tutorial_step = 0;
 var prevent_spawn = false
 var can_restart = false
 
 func _ready() -> void:
+    play_music(intro_music)
     wave_label.display("WASD to move")
     
 func tutorial(step: int) -> void:
@@ -27,9 +32,11 @@ func tutorial(step: int) -> void:
         tutorial_step = -1
         wave_label.undisplay()
         await get_tree().create_timer(1.5).timeout
+        play_music(game_music)
         spawn()
         
 func game_over() -> void:
+    play_music(game_over_music)
     @warning_ignore("integer_division")
     wave_label.display("You survived %s waves.\n " % (cost / 8))
     prevent_spawn = true
@@ -40,7 +47,12 @@ func game_over() -> void:
     @warning_ignore("integer_division")
     wave_label.text = "You survived %s waves.\nClick to restart" % (cost / 8)
     cost = 0
-    
+
+func play_music(music: AudioStream) -> void:\
+   if audio_stream_player.stream != music:
+       audio_stream_player.stop()
+       audio_stream_player.stream = music
+       audio_stream_player.play()
     
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseButton && event.pressed: 
@@ -52,6 +64,7 @@ func _input(event: InputEvent) -> void:
                 wave_label.animation_player.play("RESET");
                 player.live()
                 await get_tree().create_timer(1.5).timeout
+                play_music(game_music)
                 spawn()
             
 func spawn() -> void:

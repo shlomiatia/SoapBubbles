@@ -8,12 +8,12 @@ uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 void fragment() {
     // Get the sprite's alpha from its texture
     float sprite_alpha = texture(TEXTURE, UV).a;
-    
+
     // Only apply the effect where the sprite has opacity
     if (sprite_alpha > 0.0) {
         vec2 cPos = -1.0 + 2.0 * UV;
         float cLength = length(cPos);
-        
+
         // Convert UV to screen coordinates
         vec2 screen_uv = SCREEN_UV + (cPos/cLength) * cos(cLength * wave_count - TIME * speed) * height;
         vec3 col = texture(SCREEN_TEXTURE, screen_uv).xyz;
