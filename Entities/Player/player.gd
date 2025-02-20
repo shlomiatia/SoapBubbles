@@ -4,8 +4,6 @@ const MAX_METER: float = 1.0
 const world_width: float = 1920.0 * 3.0
 const world_height: float = 1080.0 * 3.0
 
-var TEXTURE_RADIUS
-
 var current_state_id: PlayerStateMachine.PlayerStateEnum
 var meter: float = MAX_METER
 var big_bubble: BigBubble = null
@@ -27,7 +25,7 @@ var pop_sounds = [
 ]
 
 func _ready() -> void:
-    TEXTURE_RADIUS = $Sprite2D.texture.get_width() / 2.0
+    pass
 
 func _process(delta):
     PlayerStateMachine.get_current(self)._process(self, delta)
@@ -56,7 +54,7 @@ func get_bubble_direction():
     return (get_global_mouse_position() - global_position).normalized()
     
 func get_bubble_position():
-    return global_position + get_bubble_direction() * TEXTURE_RADIUS
+    return global_position + Vector2(0.0, 10.0)
 
 func deplete_meter(delta: float):
     set_meter(max(meter - Constants.meter_drop_rate * delta, 0.0))

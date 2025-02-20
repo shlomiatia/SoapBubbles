@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://ctgtavkfab4qo"]
 
 [ext_resource type="Script" path="res://Entities/BigBubble/big_bubble.gd" id="1_yoiv7"]
-[ext_resource type="Shader" path="res://Entities/BigBubble/BigBubble.gdshader" id="2_7sdc6"]
+[ext_resource type="Shader" path="res://Entities/BigBubble/Ripple.gdshader" id="2_7sdc6"]
 [ext_resource type="Texture2D" uid="uid://doy12836wc0mm" path="res://Textures/bubble128.mask.png" id="2_ay4s8"]
 [ext_resource type="Texture2D" uid="uid://dasvesma47f3y" path="res://Textures/bubble128.png" id="2_x08ug"]
 [ext_resource type="Texture2D" uid="uid://bda2vgniah4dk" path="res://Textures/bubble128.pop1.png" id="3_xh3s7"]
@@ -152,16 +152,14 @@ autoplay = " Inflate"
 
 [node name="Sprite2DMask" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_x1t86")
+rotation = 6.28319
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_ay4s8")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1e-05, 1e-05)
 sprite_frames = SubResource("SpriteFrames_a1xed")
-animation = &"pop"
 autoplay = "default"
-frame = 5
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kymf6")
