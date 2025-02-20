@@ -7,6 +7,8 @@ class_name SpawnEnemies extends Node2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 var intro_music = preload("res://Audio/relaxing-guitar-loop-v5-245859.mp3")
 var game_music = preload("res://Audio/free-synthwave-track-back-to-space-250929.mp3")
+var easy_game_music = preload("res://Audio/cartoon-funland-284275.mp3")
+var power_game_music = preload("res://Audio/beelzebub-248345.mp3")
 var game_over_music = preload("res://Audio/hope-cinematic-loop-273335.mp3")
 var cost := 0;
 var tutorial_step = 0;
@@ -32,8 +34,7 @@ func tutorial(step: int) -> void:
         tutorial_step = -1
         wave_label.undisplay()
         await get_tree().create_timer(1.5).timeout
-        play_music(game_music)
-        spawn()
+        start_game()
         
 func game_over() -> void:
     play_music(game_over_music)
@@ -60,8 +61,7 @@ func _input(event: InputEvent) -> void:
         event.keycode == KEY_ESCAPE && \
         tutorial_step != -1:
         tutorial_step = -1
-        play_music(game_music)
-        spawn()
+        start_game()
     if event is InputEventMouseButton && event.pressed: 
         if event.button_index == MOUSE_BUTTON_LEFT:
             if can_restart:
@@ -71,8 +71,16 @@ func _input(event: InputEvent) -> void:
                 wave_label.animation_player.play("RESET");
                 player.live()
                 await get_tree().create_timer(1.5).timeout
-                play_music(game_music)
-                spawn()
+                start_game()
+                
+func start_game() -> void:
+    if Constants.enemy_speed == 200.0:
+        play_music(easy_game_music)
+    elif Constants.player_speed == 225.0:
+        play_music(power_game_music)
+    else:
+        play_music(game_music)
+    spawn()
             
 func spawn() -> void:
     if prevent_spawn:

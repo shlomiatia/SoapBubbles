@@ -60,8 +60,8 @@ func _input(event: InputEvent):
         timer = 0.0
         
         if arrays_match(input_sequence, cheat_easy_mode):
-            print("God mode activated!")
-            Constants.enemy_speed = 220.0
+            print("Easy mode activated!")
+            Constants.enemy_speed = 200.0
             Constants.cost_increase_per_wave = 4.0
             input_sequence.clear()
         if arrays_match(input_sequence, cheat_power_mode):
