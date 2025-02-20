@@ -1,11 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://gbxgd8qq7r07"]
+[gd_scene load_steps=15 format=3 uid="uid://gbxgd8qq7r07"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_4cpn8"]
 [ext_resource type="Texture2D" uid="uid://ceatowguh0grk" path="res://Textures/player64.png" id="1_psplf"]
 [ext_resource type="Texture2D" uid="uid://cdxt56bp84xur" path="res://Textures/player-dead.png" id="3_4qbgg"]
-[ext_resource type="AudioStream" uid="uid://c62511dn831k" path="res://Audio/wind-2-44150.mp3" id="3_k41cm"]
 [ext_resource type="Script" path="res://Entities/Player/camera_2d.gd" id="3_t5n6m"]
-[ext_resource type="AudioStream" uid="uid://brbckorh0arxf" path="res://Audio/bubbles-003-6397.mp3" id="4_tmkg3"]
 [ext_resource type="Texture2D" uid="uid://dukma3lf4kmfe" path="res://Textures/player-blowing.png" id="7_h4aqg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eknxg"]
@@ -27,32 +25,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 1), Vector2(0.8, 1)]
 }
-tracks/1/type = "audio"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("3_k41cm")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
-}],
-"times": PackedFloat32Array(0, 2)
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -104,24 +83,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1), Vector2(0.95, 1.05)]
 }
-tracks/1/type = "audio"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"clips": [],
-"times": PackedFloat32Array()
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -241,32 +209,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1), Vector2(1.05, 1)]
 }
-tracks/1/type = "audio"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("4_tmkg3")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
-}],
-"times": PackedFloat32Array(0, 2)
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,

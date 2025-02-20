@@ -1,7 +1,11 @@
 class_name PlayerLightState extends State
 
-func enter(host) -> void:
+func enter(host: Player) -> void:
+    host.play_sound(host.light_sound)
     host.animation_player.play("Small")
+    
+func exit(host: Player) -> void:
+    host.stop_sound()
 
 func _process(host: Player, delta: float):
     host.spawn_enemies.tutorial(1)

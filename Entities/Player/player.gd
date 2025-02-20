@@ -24,6 +24,9 @@ var pop_sounds = [
     preload("res://Audio/pop3.mp3")
 ]
 
+var light_sound = preload("res://Audio/bubbles-003-6397.mp3")
+var heavy_sound = preload("res://Audio/wind-2-44150.mp3")
+
 func _ready() -> void:
     pass
 
@@ -122,12 +125,21 @@ func play_random_pop_sound(pos: Vector2) -> void:
         pop_audio_stream_player.stream = pop_sounds[randi_range(0, pop_sounds.size() - 1)]
         pop_audio_stream_player.play()
 
-func enemy_died(size: int):
+func enemy_died(size: int) -> void:
     camera2d.start_screen_shake(size / 20.0, 2 * log(size) / log(2) - 4)
     if size == 16:
         pop_audio_stream_player.bus = "Master"
     else:
         pop_audio_stream_player.bus = "Bass%s" % size
-        get_tree().paused = true
-        await get_tree().create_timer(size / 6.0 / 1000.0).timeout  # Godot 4.x
-        get_tree().paused = false
+        #get_tree().paused = true
+        #await get_tree().create_timer(size / 6.0 / 1000.0).timeout
+        #get_tree().paused = false
+
+
+func play_sound(sound: AudioStream) -> void:
+    audio_stream_player.stop()
+    audio_stream_player.stream = sound
+    audio_stream_player.play()
+    
+func stop_sound() -> void:
+    audio_stream_player.stop()

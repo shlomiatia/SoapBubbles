@@ -1,11 +1,13 @@
 class_name PlayerHeavyState extends State
 
 func enter(host: Player):
+    host.play_sound(host.heavy_sound)
     host.big_bubble = host.big_bubble_scene.instantiate()
     host.add_child(host.big_bubble)
     host.animation_player.play("Big")
 
 func exit(host: Player):
+    host.stop_sound()
     host.stop()
     
 func _process(host: Player, delta: float):

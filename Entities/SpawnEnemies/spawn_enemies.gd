@@ -46,7 +46,7 @@ func game_over() -> void:
     await get_tree().create_timer(2.5).timeout
     can_restart = true
     @warning_ignore("integer_division")
-    wave_label.text = "You survived %s waves.\nClick to restart" % (cost / 8)
+    wave_label.text = "You survived %s waves.\nClick to restart" % (cost / Constants.cost_increase_per_wave)
     cost = 0
 
 func play_music(music: AudioStream) -> void:\
