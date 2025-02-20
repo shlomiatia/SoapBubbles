@@ -74,10 +74,10 @@ func _input(event: InputEvent) -> void:
                 start_game()
                 
 func start_game() -> void:
-    if Constants.enemy_speed == 200.0:
-        play_music(easy_game_music)
-    elif Constants.player_speed == 225.0:
+    if Constants.player_speed == 225.0:
         play_music(power_game_music)
+    elif Constants.enemy_speed == 200.0:
+        play_music(easy_game_music)
     else:
         play_music(game_music)
     spawn()
