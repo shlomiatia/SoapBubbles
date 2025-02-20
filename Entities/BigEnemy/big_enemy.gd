@@ -12,17 +12,14 @@ static var props = {
     32: {
         "texture": texture32,
         "radius": radius32,
-        "screen_shake": 6.0
     },
     64: {
         "texture": texture64,
         "radius": radius64,
-        "screen_shake": 8.0
     },
     128: {
         "texture": texture128,
         "radius": radius128,
-        "screen_shake": 10.0
     },
 }
 

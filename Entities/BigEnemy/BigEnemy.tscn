@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d07vwmxtdpwky" path="res://Textures/blob32.png" id="2_rjf5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_21vcb"]
+resource_local_to_scene = true
 radius = 13.0
 
 [sub_resource type="Animation" id="Animation_4ql2j"]
