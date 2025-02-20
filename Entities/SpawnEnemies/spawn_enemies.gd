@@ -55,6 +55,13 @@ func play_music(music: AudioStream) -> void:\
        audio_stream_player.play()
     
 func _input(event: InputEvent) -> void:
+    if event is InputEventKey && \
+        event.is_pressed() && \
+        event.keycode == KEY_ESCAPE && \
+        tutorial_step != -1:
+        tutorial_step = -1
+        play_music(game_music)
+        spawn()
     if event is InputEventMouseButton && event.pressed: 
         if event.button_index == MOUSE_BUTTON_LEFT:
             if can_restart:

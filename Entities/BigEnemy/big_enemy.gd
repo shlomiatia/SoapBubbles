@@ -7,21 +7,22 @@ static var texture128 = preload("res://Textures/blob128.png")
 static var radius32 = 13
 static var radius64 = 29
 static var radius128 = 55
-
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
-
+ 
 static var props = {
     32: {
         "texture": texture32,
-        "radius": radius32
+        "radius": radius32,
+        "screen_shake": 6.0
     },
     64: {
         "texture": texture64,
-        "radius": radius64
+        "radius": radius64,
+        "screen_shake": 8.0
     },
     128: {
         "texture": texture128,
-        "radius": radius128
+        "radius": radius128,
+        "screen_shake": 10.0
     },
 }
 
@@ -38,13 +39,15 @@ func setup(given_size: int) -> void:
     sprite2d.offset = Vector2(0, -given_size / 2)
     $CollisionShape2D.shape.radius = prop.radius
 
-func hit(bubble_size: float) -> void:
+func hit(bubble_size: float, vector: Vector2) -> void:
     if bubble_size >= size:
+        velocity = vector * bubble_size
         die()
         
 func die():
     var animation_player: AnimationPlayer = $AnimationPlayer
     collision_shape.disabled = true
     animation_player.play("Dead")
+    player.enemy_died(size)
     animation_player.animation_finished.connect(func (_anim): queue_free())
         

@@ -16,6 +16,15 @@ var is_dead = false
 @onready var bottle: Bottle = $/root/Game/CanvasLayer/Bottle
 @onready var spawn_enemies: SpawnEnemies = $/root/Game/SpawnEnemies
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var pop_audio_stream_player: AudioStreamPlayer = $PopAudioStreamPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var camera2d: Camera2D = $Camera2D
+
+var pop_sounds = [
+    preload("res://Audio/pop1.mp3"),
+    preload("res://Audio/pop2.mp3"),
+    preload("res://Audio/pop3.mp3")
+]
 
 func _ready() -> void:
     TEXTURE_RADIUS = $Sprite2D.texture.get_width() / 2.0
@@ -103,4 +112,24 @@ func live() -> void:
     await get_tree().create_timer(1).timeout
     animation_player.play("Idle")
     is_dead = false
-    
+
+func play_random_pop_sound(pos: Vector2) -> void:
+    var visible_rect_size = get_viewport_rect().size
+    var visible_rect = Rect2(
+        camera2d.global_position - visible_rect_size/2,
+        visible_rect_size
+    )
+    if visible_rect.has_point(pos):    
+        pop_audio_stream_player.stop()
+        pop_audio_stream_player.stream = pop_sounds[randi_range(0, pop_sounds.size() - 1)]
+        pop_audio_stream_player.play()
+
+func enemy_died(size: int):
+    camera2d.start_screen_shake(size / 20.0, 2 * log(size) / log(2) - 4)
+    if size == 16:
+        pop_audio_stream_player.bus = "Master"
+    else:
+        pop_audio_stream_player.bus = "Bass%s" % size
+        get_tree().paused = true
+        await get_tree().create_timer(size / 4.0 / 1000.0).timeout  # Godot 4.x
+        get_tree().paused = false

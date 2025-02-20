@@ -1,11 +1,14 @@
 class_name Enemy extends CharacterBody2D
 
 @onready var player: Player = $/root/Game/Player
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
     tree_exiting.connect(_on_tree_existing)
 
 func _physics_process(delta: float) -> void:
+    if collision_shape.disabled:
+        return
     var direction = (player.global_position - global_position).normalized()
     velocity = direction * Constants.enemy_speed
     var collision = move_and_collide(velocity * delta)
