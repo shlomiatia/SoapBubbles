@@ -38,7 +38,7 @@ func tutorial(step: int) -> void:
 func game_over() -> void:
     play_music(game_over_music)
     @warning_ignore("integer_division")
-    wave_label.display("You survived %s waves.\n " % (cost / 8))
+    wave_label.display("You survived %s waves.\n " % (cost / Constants.cost_increase_per_wave))
     prevent_spawn = true
     for enemy in get_tree().get_nodes_in_group("enemies"):
         enemy.die()
@@ -77,9 +77,9 @@ func _input(event: InputEvent) -> void:
 func spawn() -> void:
     if prevent_spawn:
         return
-    cost += 8
+    cost += Constants.cost_increase_per_wave
     @warning_ignore("integer_division")
-    wave_label.display_and_hide("Wave %s" % (cost / 8))
+    wave_label.display_and_hide("Wave %s" % (cost / Constants.cost_increase_per_wave))
     await get_tree().create_timer(5.0).timeout
     var viewport_size = get_viewport_rect().size
     var camera_pos = camera.global_position

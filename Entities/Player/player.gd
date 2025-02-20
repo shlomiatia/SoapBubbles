@@ -129,5 +129,5 @@ func enemy_died(size: int):
     else:
         pop_audio_stream_player.bus = "Bass%s" % size
         get_tree().paused = true
-        await get_tree().create_timer(size / 4.0 / 1000.0).timeout  # Godot 4.x
+        await get_tree().create_timer(size / 6.0 / 1000.0).timeout  # Godot 4.x
         get_tree().paused = false

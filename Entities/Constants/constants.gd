@@ -11,6 +11,7 @@ var player_speed: float = 175.0
 var max_meter: float = 1.0
 var meter_drop_rate: float = 0.5
 var meter_fill_rate: float = 0.5
+var cost_increase_per_wave: float = 8.0
 
 var canvas_layer: CanvasLayer
 var display_label: Label
@@ -18,6 +19,10 @@ var current_property_index: int = 0
 var properties: Array = []
 
 var timer = 0
+var input_sequence = []
+var cheat_easy_mode = [KEY_I, KEY_D, KEY_D, KEY_Q, KEY_D]
+var cheat_power_mode = [KEY_I, KEY_D, KEY_K, KEY_F, KEY_A]
+var sequence_timeout = 1.0
 
 func _ready():
     properties = [
@@ -29,12 +34,15 @@ func _ready():
         "player_speed",
         "max_meter",
         "meter_drop_rate",
-        "meter_fill_rate"
+        "meter_fill_rate",
+        "cost_increase_per_wave"
     ]
     
     setup_ui()
     update_display()
     print_all_values()
+    display_label.hide()
+    
     
 func setup_ui():
     canvas_layer = CanvasLayer.new()
@@ -47,6 +55,24 @@ func setup_ui():
 
 
 func _input(event: InputEvent):
+    if event is InputEventKey and event.pressed and not event.echo:
+        input_sequence.append(event.keycode)
+        timer = 0.0
+        
+        if arrays_match(input_sequence, cheat_easy_mode):
+            print("God mode activated!")
+            Constants.enemy_speed = 220.0
+            Constants.cost_increase_per_wave = 4.0
+            input_sequence.clear()
+        if arrays_match(input_sequence, cheat_power_mode):
+            print("Power mode activated!")
+            Constants.max_meter = 2.0
+            Constants.meter_drop_rate = 0.25
+            Constants.meter_fill_rate = 1.0
+            Constants.player_speed = 225.0
+            input_sequence.clear()
+    return
+    @warning_ignore("unreachable_code")
     if event.is_action_pressed("ui_right"):
         current_property_index = (current_property_index + 1) % properties.size()
         update_display()
@@ -63,8 +89,26 @@ func _input(event: InputEvent):
     elif event.is_action_pressed("ui_down"):
         timer = 0
         adjust_current_value(-1)
+        
+func arrays_match(arr1, arr2):
+    if arr1.size() != arr2.size():
+        return false
+    
+    for i in range(arr1.size()):
+        if arr1[i] != arr2[i]:
+            return false
+    
+    return true
     
 func _process(delta: float) -> void:    
+    if input_sequence.size() > 0:
+        timer += delta
+        if timer > sequence_timeout:
+            input_sequence.clear()
+            timer = 0.0
+    return
+
+    @warning_ignore("unreachable_code")
     if Input.is_action_pressed("ui_up"):
         timer += delta
         print(timer)

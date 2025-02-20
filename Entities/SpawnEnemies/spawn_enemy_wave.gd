@@ -4,7 +4,6 @@ enum SpawnSide { LEFT, RIGHT, TOP, DOWN }
 enum Formation { ROW, COLUMN }
 enum EnemySize { SMALL, MEDIUM, LARGE, XLARGE }
 
-const MIN_ENEMIES_COST = 8
 const SIZE_COSTS = {
     EnemySize.SMALL: 1,
     EnemySize.MEDIUM: 4,
@@ -27,7 +26,7 @@ static func generate_spawn_configuration(total_value: int) -> Array:
     for side in selected_sides:
         var points_for_side = points_per_side
         var formation = Formation.COLUMN
-        if points_for_side >= MIN_ENEMIES_COST * 2:
+        if points_for_side >= Constants.cost_increase_per_wave * 2:
             formation = Formation.ROW if randi() % 2 == 0 else Formation.COLUMN
             if formation == Formation.ROW:
                 points_for_side /= 2
@@ -48,7 +47,7 @@ static func generate_sides(value: int) -> Array:
     var divider = 4
     
     @warning_ignore("integer_division")
-    while !sides.is_empty() && value / sides.size() / divider < MIN_ENEMIES_COST:
+    while !sides.is_empty() && value / sides.size() / divider < Constants.cost_increase_per_wave:
         var i = randi() % sides.size()
         if sides[i] == SpawnSide.TOP || sides[i] == SpawnSide.DOWN:
             divider /= 2
